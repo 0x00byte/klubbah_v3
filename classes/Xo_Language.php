@@ -50,17 +50,20 @@
 			$words = mysqli_fetch_array($r, MYSQLI_ASSOC);
 			mysqli_free_result($r);
 			$this->words = $words;
-			return $this->words;
+			$_SESSION['words'] = $this->words;
 		}
 
 		public function language_select() {
 
 			$this->languages = $this->getData("SELECT lang_id, lang FROM languages ORDER BY lang_eng ASC");
+
 			$output = '<form class="language-selection" action="index.php" method="get">
 			<select name="lid"><option value="0">' . $_SESSION['words']['language'] . '</option>';
+
 			foreach ($this->languages as $language) {
 				$output .= "<option name=\"lid\" value=\"$language[lang_id]\">$language[lang]</option>\n";
 			}
+
 			$output .= '</select><input name="submit" type="submit" value="' . $_SESSION['words']['submit'] . '" /></form>';
 			echo $output;
 

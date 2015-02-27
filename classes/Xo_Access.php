@@ -23,6 +23,7 @@
 
 		public $email;
 		public $pass;
+		private $is_logged_in = true;
 
 		// $_POST['email'] & $_POST['pass']
 		public function access_validate_login($email, $pass) {
@@ -67,6 +68,10 @@
 			ob_end_clean();
 			header("Location: $url");
 			exit();
+		}
+
+		public function accessIsLoggedIn() {
+			return $this->is_logged_in;
 		}
 
 	}

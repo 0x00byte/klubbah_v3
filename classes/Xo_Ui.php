@@ -20,17 +20,28 @@
 
 	// CREATES NEW USER INSTANCE
 	class Xo_Ui extends Xo_Language {
+
+		public $scripts = array();
+
 		public function uiContentDiv() {
 
 		}
 
-		public function templateManager($template) {
+		public function uiTemplateManager($template) {
 			if (isset($template)) {
 				include_once 'templates/' . $template . '.php';
 			} else {
 				echo "Page not found. Please try again.";
 			}
 		}
+
+		public function uiIncludeScripts() {
+			foreach ($this->scripts as $script) {
+				echo '<script type="text/javascript" src="js/' . $script . '"></script>';
+			}
+		}
+
+
 
 	}
 
