@@ -15,6 +15,8 @@
 ob_start();
 session_start();
 
+error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+
 const COMPANY = "SIROCCO";
 
 const FOUNDATION = 'includes/classes/foundation/';
@@ -32,7 +34,7 @@ const EMAIL = 'info@evereti.com';
 const SYSADMIN = 'matt@evereti.com';
 
 // SITE URL
-const BASE_URL = 'http://localhost:8888/klubbah_v3/html/index.php';
+const BASE_URL = 'http://localhost:8888/klubbah_v3/html/';
 
 // MySQL
 const MYSQL = '../mysqli_connect.php';

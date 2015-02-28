@@ -21,15 +21,18 @@
 		// INITIALIZES LANGUAGE CLASS AND VARIABLES
 	abstract class Xo_Access extends Xo_Ui {
 
+
 		public $email;
 		public $pass;
-		private $is_logged_in = true;
 
 		// $_POST['email'] & $_POST['pass']
 		public function access_validate_login($email, $pass) {
 
-			$this->rootValidate($email, 'email', 'your email address');
-			$this->rootValidate($pass, 'pass', 'your password');
+			//$this->email = $this->rootValidate($email, 'email', 'your email address');
+			//$this->pass = $this->rootValidate($pass, 'pass', 'your password');
+
+			$this->email = $_POST['email'];
+			$this->pass = $_POST['pass'];
 
 			if ($this->email && $this->pass) {
 
@@ -41,11 +44,13 @@
 					// Register the values:
 					$_SESSION = mysqli_fetch_array ($r, MYSQLI_ASSOC);
 					$_SESSION['logged_in'] = 2600;
+					$_SESSION['is_logged_in'] = true;
 					mysqli_free_result($r);
 					mysqli_close($this->dbc);
 
 					if ($_SESSION['user_level'] == 1) {
-						$url = BASE_URL . 'admin.php';
+						//$url = BASE_URL . 'admin.php';
+						$url = BASE_URL . 'index.php';
 					} else {
 						$url = BASE_URL . 'index.php';
 					}
@@ -68,10 +73,6 @@
 			ob_end_clean();
 			header("Location: $url");
 			exit();
-		}
-
-		public function accessIsLoggedIn() {
-			return $this->is_logged_in;
 		}
 
 	}

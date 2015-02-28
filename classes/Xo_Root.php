@@ -47,7 +47,7 @@
 
 		public function rootValidate($variable, $variable_string, $error) {
 			if (!empty($variable)) {
-				$this->$variable_string = $this->db->escapeString($variable);
+				return $this->db->escapeString($variable);
 			} else {
 				$this->$variable_string = FALSE;
 				$this->rootValidateError($error);

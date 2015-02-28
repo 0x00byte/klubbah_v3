@@ -20,17 +20,17 @@
   <div class="login_page">
   <div class="login_content">
   <div class="panel-heading border login_heading">sign in now</div>
- <form role="form" class="form-horizontal">
+ <form role="form" class="form-horizontal" method="post" action="index.php">
       <div class="form-group">
 
         <div class="col-sm-10">
-          <input type="email" placeholder="Email" id="inputEmail3" class="form-control">
+          <input type="email" placeholder="Email" id="inputEmail3" class="form-control" name="email">
         </div>
       </div>
       <div class="form-group">
 
         <div class="col-sm-10">
-          <input type="password" placeholder="Password" id="inputPassword3" class="form-control">
+          <input type="password" placeholder="Password" id="inputPassword3" class="form-control" name="pass">
         </div>
       </div>
       <div class="form-group">
@@ -40,6 +40,7 @@
               <input type="checkbox"><p class="pull-left"> Remember me</p></label>
               <a href="index.html">
               <button class="btn btn-default pull-right" type="submit">Sign in</button>
+              <input type="submit">
               </a></div>
         </div>
       </div>
