@@ -46,7 +46,7 @@
 		if (isset($_POST['email']) && isset($_POST['pass'])) {
 			$app->access_validate_login($_POST['email'], $_POST['pass']);
 		} else {
-			$app->uiTemplateManager('login');
+			$app->uiTemplateManager('login', $app);
 		}
 	}
 ?>

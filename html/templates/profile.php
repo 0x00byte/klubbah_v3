@@ -8,7 +8,8 @@
                     <div class="col-md-8">
                       <div class="user-identity">
                         <h4><strong><?php echo $app->userDisplayName(); ?></strong></h4>
-                        <p><i class="fa fa-map-marker"></i> Riaxe Systems Pvt</p>
+                        <p><a href="#">@<?php echo $app->userUsername(); ?></a></p>
+                        <p><i class="fa fa-map-marker"></i> <?php echo $app->userLocation(); ?></p>
                       </div>
                     </div>
                   </div>
@@ -40,7 +41,7 @@
                   </div>
                 </div>
                 <div> <small class="">About <?php echo $app->userFirstName(); ?></small>
-                  <p><?php echo $app->userAbout(); ?></p>
+                  <p><?php echo $app->userBio(); ?></p>
                   <div class="line"></div>
                   <p class="m-t-sm"> </p>
                 </div>
@@ -101,30 +102,27 @@
                   <div class="tab-pane animated fadeInRight active" id="about">
                     <div class="user-profile-content">
                       <h5><strong>ABOUT</strong> ME</h5>
-                      <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
+                      <p><?php echo $app->userAbout(); ?></p>
                       <hr>
                       <div class="row">
                         <div class="col-sm-6">
                           <h5><strong>CONTACT</strong> ME</h5>
                           <address>
                           <strong>Phone</strong><br>
-                          <abbr title="Phone">+91 354 123 4567</abbr>
+                          <abbr title="Phone"><?php echo $app->userTelephone(); ?></abbr>
                           </address>
                           <address>
                           <strong>Email</strong><br>
-                          <a href="mailto:#">first.last@example.com</a>
+                          <a href="mailto:#"><?php echo $app->userEmail(); ?></a>
                           </address>
                           <address>
                           <strong>Website</strong><br>
-                          <a href="http://riaxe.com">http://riaxe.com</a>
+                          <a href="<?php echo $app->userWebsite(); ?>"><?php echo $app->userWebsite(); ?></a>
                           </address>
                         </div>
                         <div class="col-sm-6">
                           <h5><strong>MY</strong> SKILLS</h5>
-                          <p>UI Design</p>
-                          <p>Clean and Modern Web Design</p>
-                          <p>PHP and MySQL Programming</p>
-                          <p>Vector Design</p>
+                          <?php echo $app->userSkills(); ?>
                         </div>
                       </div>
                     </div>
@@ -138,11 +136,11 @@
                         </div>
                         <div class="form-group">
                           <label for="Email">Email</label>
-                          <input type="email" class="form-control" id="Email" value="first.last@example.com">
+                          <input type="email" class="form-control" id="Email" value="<?php echo $app->userEmail(); ?>">
                         </div>
                         <div class="form-group">
                           <label for="Username">Username</label>
-                          <input type="text" class="form-control" id="Username" value="john">
+                          <input type="text" class="form-control" id="Username" value="<?php echo $app->userUsername(); ?>">
                         </div>
                         <div class="form-group">
                           <label for="Password">Password</label>
@@ -154,7 +152,7 @@
                         </div>
                         <div class="form-group">
                           <label for="AboutMe">About Me</label>
-                          <textarea class="form-control" id="AboutMe" style="height: 125px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</textarea>
+                          <textarea class="form-control" id="AboutMe" style="height: 125px;"><?php echo $app->userAbout(); ?></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>
                       </form>
@@ -163,7 +161,7 @@
                   <div class="tab-pane" id="user-activities">
                     <ul class="media-list">
                       <li class="media"> <a href="#">
-                        <p><strong>John Doe</strong> Uploaded a photo <strong>"DSC000254.jpg"</strong> <br>
+                        <p><strong><?php echo $app->userDisplayName(); ?></strong> Uploaded a photo <strong>"DSC000254.jpg"</strong> <br>
                           <i>2 minutes ago</i></p>
                         </a> </li>
                       <li class="media"> <a href="#">
@@ -192,7 +190,7 @@
                     <ul class="media-list">
                       <li class="media"> <a class="pull-left" href="#"><img src="images/gg.png" /></a>
                         <div class="media-body">
-                          <h4 class="media-heading"><a href="#fakelink">John Doe</a> <small>Just now</small></h4>
+                          <h4 class="media-heading"><a href="#fakelink"><?php echo $app->userDisplayName(); ?></a> <small>Just now</small></h4>
                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                         </div>
                       </li>
@@ -222,7 +220,7 @@
                       </li>
                       <li class="media"> <a class="pull-left" href="#"><img src="images/gg.png" /></a>
                         <div class="media-body">
-                          <h4 class="media-heading"><a href="#fakelink">John Doe</a> <small>Just now</small></h4>
+                          <h4 class="media-heading"><a href="#fakelink"><?php echo $app->userDisplayName(); ?></a> <small>Just now</small></h4>
                           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
                         </div>
                       </li>

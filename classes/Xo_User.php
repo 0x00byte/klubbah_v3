@@ -29,20 +29,52 @@
 			return $_SESSION['first_name'];
 		}
 
+		public function userEmail() {
+			return $_SESSION['email'];
+		}
+
+		public function userUsername() {
+			return $_SESSION['username'];
+		}
+
+		public function userBio() {
+			return $_SESSION['bio'];
+		}
+
 		public function userAbout() {
-			return "Lead developer, tech nut and nature lover. In a great relationship with an amazing woman.";
+			return $_SESSION['about'];
+		}
+
+		public function userLocation() {
+			return $_SESSION['location'];
 		}
 
 		public function userPostCount() {
-			return 2600;
+			return $_SESSION['post_count'];
 		}
 
 		public function userFollowingCount() {
-			return 0;
+			return $_SESSION['following_count'];
 		}
 
 		public function userFollowerCount() {
-			return 1000;
+			return $_SESSION['follower_count'];
+		}
+
+		public function userTelephone() {
+			return $_SESSION['telephone'];
+		}
+
+		public function userWebsite() {
+			return $_SESSION['website'];
+		}
+
+		public function userSkills() {
+			$skills = $_SESSION['skills'];
+			$skills_array = explode(':', $skills);
+			foreach ($skills_array as $skill) {
+				echo '<p>' . $skill . '</p>';
+			}
 		}
 
 		private function user_check_logged_in() {}

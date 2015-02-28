@@ -36,7 +36,9 @@
 
 			if ($this->email && $this->pass) {
 
-				$q = "SELECT user_id, first_name, last_name, user_level, is_rep, is_vip, rep_points, username FROM users WHERE (email='$this->email' AND pass=SHA1('$this->pass')) AND active IS NULL";
+				//$q = "SELECT user_id, first_name, last_name, user_level, is_rep, is_vip, rep_points, username FROM users WHERE (email='$this->email' AND pass=SHA1('$this->pass')) AND active IS NULL";
+
+				$q = "SELECT users.user_id, users.first_name, users.last_name, users.user_level, users.is_rep, users.is_vip, users.rep_points, users.username, profiles.about, profiles.bio, profiles.location, profiles.post_count, profiles.following_count, profiles.follower_count, profiles.telephone, profiles.website, profiles.skills FROM profiles INNER JOIN users ON profiles.fk_user_id=users.user_id WHERE users.email='$this->email'";
 
 				$r = mysqli_query ($this->dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($this->dbc));
 
@@ -45,9 +47,11 @@
 
 					$_SESSION = mysqli_fetch_array ($r, MYSQLI_ASSOC);
 					$_SESSION['is_logged_in'] = true;
+					$_SESSION['email'] = $this->email;
 					mysqli_free_result($r);
 					mysqli_close($this->dbc);
 					ob_end_clean();
+					$url = BASE_URL . 'index.php';
 					header("Location: $url");
 					exit();
 
