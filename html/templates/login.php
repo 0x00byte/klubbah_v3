@@ -40,7 +40,6 @@
               <input type="checkbox"><p class="pull-left"> Remember me</p></label>
               <a href="index.html">
               <button class="btn btn-default pull-right" type="submit">Sign in</button>
-              <input type="submit">
               </a></div>
         </div>
       </div>
