@@ -19,7 +19,7 @@
  */
 
 	// CREATES NEW USER INSTANCE
-	class Xo_User extends Xo_Access {
+	class Xo_User extends Xo_Profile {
 
 		public function userDisplayName() {
 			return $_SESSION['first_name'] . ' ' . $_SESSION['last_name'];
@@ -77,13 +77,6 @@
 			}
 		}
 
-		private function user_check_logged_in() {}
-		public function user_check_login_status() {}
-		public function user_set_vars() {}
-		public function user_username() {}
-		public function user_name() {
-			echo "Matt Carr";
-		}
 	}
 
 ?>

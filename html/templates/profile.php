@@ -1,4 +1,12 @@
-        <div class="page-content">
+<?php
+
+	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['status_text'])) {
+		$app->statusSave($_POST['status_text']);
+	}
+
+?>
+
+       <div class="page-content">
           <div class="row">
             <div class="col-md-4">
               <div class="profile_bg">
@@ -58,11 +66,12 @@
               </div>
               <!--/block-web-->
               <section class="panel panel-default ">
-                <form >
-                  <textarea placeholder="What are you doing..." rows="3" class="form-control no-border profile_form" style="width:414px;"></textarea>
+                <form action="index.php?page=profile" method="post">
+                  <textarea placeholder="What are you doing..." rows="3" class="form-control no-border profile_form" style="width:100%;" name="status_text"></textarea>
+                  <button class="btn btn-info pull-right btn-sm">POST</button>
                 </form>
                 <footer class="profile_form">
-                  <button class="btn btn-info pull-right btn-sm">POST</button>
+
                   <ul class="nav nav-pills nav-sm">
                     <li><a href="#"><i class="fa fa-camera text-muted"></i></a></li>
                     <li><a href="#"><i class="fa fa-video-camera text-muted"></i></a></li>
@@ -129,7 +138,7 @@
                   </div>
                   <div class="tab-pane animated fadeInRight" id="edit-profile">
                     <div class="user-profile-content">
-                      <form role="form">
+                      <form role="form" action="index.php?page=profile" method="post">
                         <div class="form-group">
                           <label for="FullName">Full Name</label>
                           <input type="text" class="form-control" id="FullName" value="<?php echo $app->userDisplayName(); ?>">
@@ -230,7 +239,12 @@
                 <!--/tab-content-->
               </div>
               <!--/block-web-->
+              <h2 style="text-align:center">Timeline</h2>
+              <div class="timeline">
+              	<?php $app->statusGetFeed(); ?>
+              </div>
             </div>
+
             <!--/col-md-8-->
           </div>
           <!--/row-->
