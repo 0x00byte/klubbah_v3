@@ -92,9 +92,21 @@
             </ul>
           </div>
         </div>
-        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="images/user.png" /><span class="user_adminname">John Doe</span> <b class="caret"></b> </a>
+        <div class="user_admin dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"><img src="images/user.png" />
+	        <span class="user_adminname">
+	        	<?php echo $app->userDisplayName(); ?>
+	        </span> <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <div class="top_pointer"></div>
+            <?php
+
+	            if ($app->accessIsAdmin() === true) {
+					?>
+					<li> <a href="<?php echo BASE_URL . '?page=profile' ?>"><i class="fa fa-user"></i> You're an admin</a> </li>
+					<?php
+	            }
+
+            ?>
             <li> <a href="<?php echo BASE_URL . '?page=profile' ?>"><i class="fa fa-user"></i> Profile</a> </li>
             <li> <a href="<?php echo BASE_URL . '?page=help' ?>"><i class="fa fa-question-circle"></i> Help</a> </li>
             <li> <a href="<?php echo BASE_URL . '?page=setting' ?>"><i class="fa fa-cog"></i> Settings </a></li>

@@ -37,9 +37,9 @@
 	if (isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in'] === true) {
 		require_once 'includes/header.php';
 		if (isset($_GET['page'])) {
-			$app->uiTemplateManager($_GET['page']);
+			$app->uiTemplateManager($_GET['page'], $app);
 		} else {
-			$app->uiTemplateManager('index');
+			$app->uiTemplateManager('index', $app);
 		}
 		require_once 'includes/footer.php';
 	} else {

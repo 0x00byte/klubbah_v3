@@ -20,6 +20,31 @@
 
 	// CREATES NEW USER INSTANCE
 	class Xo_User extends Xo_Access {
+
+		public function userDisplayName() {
+			return $_SESSION['first_name'] . ' ' . $_SESSION['last_name'];
+		}
+
+		public function userFirstName() {
+			return $_SESSION['first_name'];
+		}
+
+		public function userAbout() {
+			return "Lead developer, tech nut and nature lover. In a great relationship with an amazing woman.";
+		}
+
+		public function userPostCount() {
+			return 2600;
+		}
+
+		public function userFollowingCount() {
+			return 0;
+		}
+
+		public function userFollowerCount() {
+			return 1000;
+		}
+
 		private function user_check_logged_in() {}
 		public function user_check_login_status() {}
 		public function user_set_vars() {}

@@ -7,7 +7,7 @@
                     <div class="col-md-4"><img src="images/pro.png" /></div>
                     <div class="col-md-8">
                       <div class="user-identity">
-                        <h4><strong>John Doe</strong></h4>
+                        <h4><strong><?php echo $app->userDisplayName(); ?></strong></h4>
                         <p><i class="fa fa-map-marker"></i> Riaxe Systems Pvt</p>
                       </div>
                     </div>
@@ -16,15 +16,15 @@
                 <div class="account-status-data">
                   <div class="row">
                     <div class="col-md-4">
-                      <h5><strong>2,173</strong><br/>
+                      <h5><strong><?php echo $app->userPostCount(); ?></strong><br/>
                         Posts</h5>
                     </div>
                     <div class="col-md-4">
-                      <h5><strong>14</strong><br/>
+                      <h5><strong><?php echo $app->userFollowingCount(); ?></strong><br/>
                         Following</h5>
                     </div>
                     <div class="col-md-4">
-                      <h5><strong>100</strong><br/>
+                      <h5><strong><?php echo $app->userFollowerCount(); ?></strong><br/>
                         Followers</h5>
                     </div>
                   </div>
@@ -39,10 +39,8 @@
                     </div>
                   </div>
                 </div>
-                <div> <small class="">about me</small>
-                  <p>Artist</p>
-                  <small class="">info</small>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis ipsum ac feugiat.</p>
+                <div> <small class="">About <?php echo $app->userFirstName(); ?></small>
+                  <p><?php echo $app->userAbout(); ?></p>
                   <div class="line"></div>
                   <p class="m-t-sm"> </p>
                 </div>
@@ -136,7 +134,7 @@
                       <form role="form">
                         <div class="form-group">
                           <label for="FullName">Full Name</label>
-                          <input type="text" class="form-control" id="FullName" value="John Doe">
+                          <input type="text" class="form-control" id="FullName" value="<?php echo $app->userDisplayName(); ?>">
                         </div>
                         <div class="form-group">
                           <label for="Email">Email</label>

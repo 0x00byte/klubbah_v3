@@ -27,7 +27,7 @@
 
 		}
 
-		public function uiTemplateManager($template) {
+		public function uiTemplateManager($template, $app) {
 			if (isset($template)) {
 				include_once 'templates/' . $template . '.php';
 			} else {
