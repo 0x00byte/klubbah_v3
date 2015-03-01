@@ -19,32 +19,22 @@
  */
 
 	require_once( '../config.inc.php' );
-	require_once( '../classes/Xo_Root.php' );
+	require_once( CLASSES . 'Xo_Root.php' );
 
-	$session_id = session_id();
-	$scripts = array(
-		'jquery-2.1.0.js',
-		'bootstrap.min.js',
-		'common-script.js',
-		'jquery.slimscroll.min.js',
-		'jPushMenu.js',
-		'side-chats.js'
-	);
-
-	$app = new Xo_App($scripts);
+	$app = new Xo_App(SCRIPTS);
 	$words = $app->words;
 
 	if (isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in'] === true) {
-		require_once 'includes/header.php';
+		require_once INCLUDES . 'header.php';
 		if (isset($_GET['page'])) {
 			$app->uiTemplateManager($_GET['page'], $app);
 		} else {
 			$app->uiTemplateManager('index', $app);
 		}
-		require_once 'includes/footer.php';
+		require_once INCLUDES . 'footer.php';
 	} else {
 		if (isset($_POST['email']) && isset($_POST['pass'])) {
-			$app->access_validate_login($_POST['email'], $_POST['pass']);
+			$app->accessValidateLogin($_POST['email'], $_POST['pass']);
 		} else {
 			$app->uiTemplateManager('login', $app);
 		}

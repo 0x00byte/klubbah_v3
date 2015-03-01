@@ -26,7 +26,7 @@
 		public $pass;
 
 		// $_POST['email'] & $_POST['pass']
-		public function access_validate_login($email, $pass) {
+		public function accessValidateLogin($email, $pass) {
 
 			//$this->email = $this->rootValidate($email, 'email', 'your email address');
 			//$this->pass = $this->rootValidate($pass, 'pass', 'your password');

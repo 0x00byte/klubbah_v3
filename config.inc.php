@@ -19,9 +19,9 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 
 const COMPANY = "SIROCCO";
 
-const FOUNDATION = 'includes/classes/foundation/';
 const INCLUDES = 'includes/';
-const CLASSES = 'includes/classes/';
+const CLASSES = '../classes/';
+
 const HEADERS = 'includes/headers/';
 const TOOLBARS = 'includes/toolbars/';
 const FOOTERS = 'includes/footers/';
@@ -51,11 +51,12 @@ const TEMPLATES = 'templates/';
 
 // JAVASCRIPTS
 const SCRIPTS = array(
-	'jquery-1.9.1.min.js',
-	'plugins.all.min.js',
-	'jquery.main.js',
-	'main.js',
-	'facebook.js'
+	'jquery-2.1.0.js',
+	'bootstrap.min.js',
+	'common-script.js',
+	'jquery.slimscroll.min.js',
+	'jPushMenu.js',
+	'side-chats.js'
 );
 
 

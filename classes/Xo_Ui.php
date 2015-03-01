@@ -37,7 +37,7 @@
 
 		public function uiIncludeScripts() {
 			foreach ($this->scripts as $script) {
-				echo '<script type="text/javascript" src="js/' . $script . '"></script>';
+				echo '<script type="text/javascript" src="' . JAVASCRIPTS . $script . '"></script>';
 			}
 		}
 
