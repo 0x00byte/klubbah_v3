@@ -19,7 +19,7 @@
  */
 
 	// UPLOAD CLASS
-	abstract class Xo_Upload extends Xo_Access {
+	abstract class Xo_Upload extends Xo_Language {
 		public function upload_file($file, $path) {}
 	}
 

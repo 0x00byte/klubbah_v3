@@ -18,7 +18,7 @@
  * from Evereti Ltd.
  */
 
-	class Xo_Gallery extends Xo_Upload {
+	class Xo_Gallery extends Xo_User {
 
 	}
 

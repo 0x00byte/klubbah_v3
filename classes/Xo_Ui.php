@@ -19,7 +19,7 @@
  */
 
 	// CREATES NEW USER INSTANCE
-	class Xo_Ui extends Xo_Language {
+	class Xo_Ui extends Xo_Upload {
 
 		public $scripts = array();
 

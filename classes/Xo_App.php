@@ -19,7 +19,7 @@
  */
 
 	// CREATES NEW APP INSTANCE
-	class Xo_App extends Xo_User {
+	class Xo_App extends Xo_Event {
 
 		public $words;
 		public $event;
@@ -34,7 +34,6 @@
 			$this->words = $this->language_get_words();
 			$this->event = new Xo_Event($this->db);
 			$this->news = new Xo_News($this->db);
-			$this->video = new Xo_Video($this->db);
 			parent::language_get_words();
 		}
 

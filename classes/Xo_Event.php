@@ -19,7 +19,7 @@
  */
 
 	// CREATES NEW USER INSTANCE
-	class Xo_Event extends Xo_Access {
+	class Xo_Event extends Xo_Gallery {
 
 		function __construct($db) {
 			$this->db = $db;
