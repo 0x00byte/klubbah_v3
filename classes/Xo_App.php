@@ -22,9 +22,6 @@
 	class Xo_App extends Xo_Event {
 
 		public $words;
-		public $event;
-		public $news;
-		public $video;
 
 		function __construct($scripts) {
 			$this->initCrud();
@@ -32,8 +29,6 @@
 			$this->scripts = $scripts;
 			$this->data_connection();
 			$this->words = $this->language_get_words();
-			$this->event = new Xo_Event($this->db);
-			$this->news = new Xo_News($this->db);
 			parent::language_get_words();
 		}
 

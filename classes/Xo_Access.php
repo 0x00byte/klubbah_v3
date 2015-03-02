@@ -31,16 +31,16 @@
 			//$this->email = $this->rootValidate($email, 'email', 'your email address');
 			//$this->pass = $this->rootValidate($pass, 'pass', 'your password');
 
-			$this->email = $_POST['email'];
-			$this->pass = $_POST['pass'];
+			$this->email = $email;
+			$this->pass = sha1($pass);
 
 			if ($this->email && $this->pass) {
 
 				//$q = "SELECT user_id, first_name, last_name, user_level, is_rep, is_vip, rep_points, username FROM users WHERE (email='$this->email' AND pass=SHA1('$this->pass')) AND active IS NULL";
 
-				$q = "SELECT users.user_id, users.first_name, users.last_name, users.user_level, users.is_rep, users.is_vip, users.rep_points, users.username, profiles.about, profiles.bio, profiles.location, profiles.post_count, profiles.following_count, profiles.follower_count, profiles.telephone, profiles.website, profiles.skills FROM profiles INNER JOIN users ON profiles.fk_user_id=users.user_id WHERE users.email='$this->email'";
+				$q = "SELECT users.user_id, users.first_name, users.last_name, users.pass, users.user_level, users.is_rep, users.is_vip, users.rep_points, users.username, profiles.about, profiles.bio, profiles.location, profiles.post_count, profiles.following_count, profiles.follower_count, profiles.telephone, profiles.website, profiles.skills FROM profiles INNER JOIN users ON profiles.fk_user_id=users.user_id WHERE users.email='$this->email' AND users.pass='$this->pass'";
 
-				$r = mysqli_query ($this->dbc, $q) or trigger_error("Query: $q\n<br />MySQL Error: " . mysqli_error($this->dbc));
+				$r = mysqli_query ($this->dbc, $q);
 
 				// DB RECORD FOUND
 				if (@mysqli_num_rows($r) == 1) {
@@ -57,7 +57,7 @@
 
 				} else {
 					// NO DB RECORD FOUND
-					echo '<p class="error">Either the email address and password entered do not match those on file or you have not yet activated your account.</p>';
+					echo '<p class="error">Please check the information you entered.</p>';
 				}
 
 			} else {
