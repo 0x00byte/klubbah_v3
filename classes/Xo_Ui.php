@@ -29,7 +29,11 @@
 
 		public function uiTemplateManager($template, $app) {
 			if (isset($template)) {
-				include_once 'templates/' . $template . '.php';
+				if (file_exists("templates/" . $template . ".php")) {
+				    include_once 'templates/' . $template . '.php';
+				} else {
+				    include_once 'templates/404.php';
+				}
 			} else {
 				echo "Page not found. Please try again.";
 			}

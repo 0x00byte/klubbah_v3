@@ -56,7 +56,8 @@ const SCRIPTS = array(
 	'common-script.js',
 	'jquery.slimscroll.min.js',
 	'jPushMenu.js',
-	'side-chats.js'
+	'side-chats.js',
+	'facebook.js'
 );
 
 
@@ -130,6 +131,7 @@ function check_user_login_status() {
 }
 
 function __autoload($class_name) {
+
 	include_once 'classes/' . $class_name . '.php';
 }
 

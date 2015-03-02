@@ -43,7 +43,7 @@
                                   <span class="timeline-icon red">
                                       <i class="fa fa-check-square-o"></i>                                  </span>
                                   <span class="timeline-date"><?php echo $status['posted']; ?></span>
-                                  <h1 class="red">2 hour ago</h1>
+                                  <h1 class="red"><?php echo $status['posted']; ?></h1>
                                   <p><?php echo $status['status_text']; ?> </p>
                               </div>
                           </div>

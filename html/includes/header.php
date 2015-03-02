@@ -140,6 +140,15 @@
               <li> <a href="<?php echo BASE_URL . '?page=event' ?>" class="left_nav_sub_active"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Browse Events</b> </a> </li>
               <li> <a href="<?php echo BASE_URL . '?page=event' ?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>My Events</b> </a> </li>
               <li> <a href="<?php echo BASE_URL . '?page=event' ?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Past Events</b> </a> </li>
+               <?php
+
+	            if ($app->accessIsAdmin() === true) {
+					?>
+					<li> <a href="<?php echo BASE_URL . '?page=add-event' ?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Add Event</b> </a> </li>
+					<?php
+	            }
+
+            ?>
             </ul>
           </li>
           <li><a href="javascript:void(0);"><i class="fa fa-star"></i> GUESTLIST <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
