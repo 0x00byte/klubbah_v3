@@ -35,7 +35,7 @@
 			$this->email = $email;
 			$this->pass = sha1($pass);
 
-			if ($this->email && $this->pass != null) {
+			if ($this->email && $this->pass != null && $_SESSION['failed_login'] <= 10) {
 
 				$q = "SELECT users.user_id, users.first_name, users.last_name, users.pass, users.user_level, users.is_rep, users.is_vip, users.rep_points, users.username, profiles.about, profiles.bio, profiles.location, profiles.post_count, profiles.following_count, profiles.follower_count, profiles.telephone, profiles.website, profiles.skills FROM profiles INNER JOIN users ON profiles.fk_user_id=users.user_id WHERE users.email='$this->email' OR users.username='$this->email' AND users.pass='$this->pass'";
 
@@ -60,7 +60,12 @@
 				} else {
 					// NO DB RECORD FOUND
 					ob_end_clean();
-					$_SESSION['error_msg'] = "Please check the information you entered.";
+					$_SESSION['failed_login']++;
+					if ($_SESSION['failed_login'] <= 10) {
+						$_SESSION['error_msg'] = "Please check the information you entered.";
+					} else {
+						$_SESSION['error_msg'] = "Too many failed attempts, please wait 10 minutes.";
+					}
 					header("Location: $this->url");
 					exit();
 				}
@@ -68,7 +73,11 @@
 			} else {
 				// SOMETHING WENT WRONG
 				ob_end_clean();
-				$_SESSION['error_msg'] = "Please enter your username and password";
+				if ($_SESSION['failed_login'] <= 10) {
+					$_SESSION['error_msg'] = "Please enter your username and password";
+				} else {
+					$_SESSION['error_msg'] = "Too many failed attempts, please wait 10 minutes.";
+				}
 				header("Location: $this->url");
 				exit();
 			}

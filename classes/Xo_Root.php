@@ -54,6 +54,14 @@
 			}
 		}
 
+		public function rootError() {
+			if (isset($_SESSION['error_msg'])) {
+			 	echo '<div class="alert alert-danger">';
+			 	echo '<strong>' . $_SESSION['error_msg'] . '</strong>';
+			 	echo '</div>';
+			}
+		}
+
 	}
 
 ?>

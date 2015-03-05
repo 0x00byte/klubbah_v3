@@ -16,7 +16,7 @@
     <!--\\\\\\\ header Start \\\\\\-->
     <div class="brand">
       <!--\\\\\\\ brand Start \\\\\\-->
-      <div class="logo" style="display:block"><span class="theme_color">ULTIMO</span> Admin</div>
+      <div class="logo" style="display:block"><span class="theme_color">KLUBBAH</span> UK</div>
       <div class="small_logo" style="display:none"><img src="images/s-logo.png" width="50" height="47" alt="s-logo" /> <img src="images/r-logo.png" width="122" height="20" alt="r-logo" /></div>
     </div>
     <!--\\\\\\\ brand end \\\\\\-->

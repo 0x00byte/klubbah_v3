@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>ULTIMO Admin Dashboard Template</title>
+<title>Klubbah || Powered by Osiris</title>
 <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -21,15 +21,17 @@
   <div class="login_content">
   <div class="panel-heading border login_heading">sign in now</div>
 
-  <?php if (isset($_SESSION['error_msg'])) {
+  <!-- ERROR MESSAGE IF FAILED LOGIN -->
+  <?php $app->rootError();
 
-	 echo '<div class="alert alert-danger">';
-	  echo '<strong>' . $_SESSION['error_msg'] . '</strong>';
-	  echo '</div>';
+	  if(!isset($_SESSION['failed_login'])) {
+		$_SESSION['failed_login'] = 0;
+	  }
 
-	  } ?>
 
- <form role="form" class="form-horizontal" method="post" action="index.php">
+  ?>
+
+ <form role="form" class="form-horizontal" method="post" action="index.php" <?php if ($_SESSION['failed_login'] >= 11) { echo 'style="display: none;"'; } ?>>
       <div class="form-group">
 
         <div class="col-sm-10">
@@ -47,7 +49,7 @@
           <div class="checkbox checkbox_margin">
             <label class="lable_margin">
               <input type="checkbox" name="remember_me"><p class="pull-left"> Remember me</p></label>
-              <a href="index.html">
+              <a href="index.php">
               <button class="btn btn-default pull-right" type="submit">Sign in</button>
               </a></div>
         </div>
