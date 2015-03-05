@@ -68,7 +68,6 @@
 			} else {
 				// SOMETHING WENT WRONG
 				ob_end_clean();
-				$_SESSION['error_msg'] = null;
 				$_SESSION['error_msg'] = "Please enter your username and password";
 				header("Location: $this->url");
 				exit();
@@ -78,6 +77,14 @@
 		public function accessIsAdmin() {
 			if ($_SESSION['user_level'] == 1) {
 				return true;
+			} else {
+				return false;
+			}
+		}
+
+		public function accessLevel() {
+			if ($_SESSION['user_level'] === 1) {
+				return "admin";
 			} else {
 				return false;
 			}
