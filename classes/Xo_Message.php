@@ -23,6 +23,7 @@
 
 		private $messages = array();
 		private $sender_name;
+		private $current_message;
 
 		private function messagesGet() {
 			$this->messages = $this->getData("SELECT * FROM messages WHERE recipient_id='2'");
@@ -42,10 +43,15 @@
 				}
 				?>
 
-					<li> <a href="index.php?page=readmail" class="mail"> <span class="photo"><img src="images/user.png" /></span> <span class="subject"> <span class="from"><?php echo $sender; ?></span> <span class="time">just now</span> </span> <span class="message"><br><?php echo $message['message_subject']; ?></span> </a> </li>
+					<li> <a href="index.php?page=readmail&mid=<?php echo $message['message_id']; ?>" class="mail"> <span class="photo"><img src="images/user.png" /></span> <span class="subject"> <span class="from"><?php echo $sender; ?></span> <span class="time">just now</span> </span> <span class="message"><br><?php echo $message['message_subject']; ?></span> </a> </li>
 
 				<?php
 			}
+		}
+
+		public function getMessage($mid) {
+			$this->current_message = $this->getData("SELECT * FROM messages WHERE message_id='$mid' LIMIT 1");
+			return $this->current_message[0];
 		}
 	}
 

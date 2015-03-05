@@ -1,3 +1,15 @@
+<?php
+
+	if (isset($_GET['mid'])) {
+		$message = $app->getMessage($_GET['mid']);
+	} else {
+		$url = BASE_URL . 'index.php?page=inbox';
+		ob_end_clean();
+		header("Location: $url");
+		exit();
+	}
+
+?>
 
 
          <div class="row">
@@ -68,6 +80,7 @@
               <button title="" data-toggle="tooltip" type="button" class="btn btn-white tooltips" data-original-title="Read Previous Email"><i class="glyphicon glyphicon-chevron-left"></i></button>
               <button title="" data-toggle="tooltip" type="button" class="btn btn-white tooltips" data-original-title="Read Next Email"><i class="glyphicon glyphicon-chevron-right"></i></button>
             </div>
+
             <div class="read-panel">
               <div class="media"> <a class="pull-left" href="#"> <img class="media-object" src="images/photos/user4.jpg" alt=""> </a>
                 <div class="media-body"> <span class="media-meta pull-right">Yesterday at 1:30am</span>
@@ -75,14 +88,8 @@
                   <small class="text-muted">From: ramanip@riaxe.com</small> </div>
               </div>
 
-              <h4 class="email-subject">Lorem ipsum dolor sit amet, consectetur adipisicing elit</h4>
-              <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritati.</p>
-              <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non</p>
-              <p><strong>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</strong></p>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritati.</p>
-              <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non</p>
+              <h4 class="email-subject"><?php echo $message['message_subject']; ?></h4>
+              <p><?php echo $message['message_content']; ?></p>
               <br>
               <div class="media"> <a class="pull-left" href="#"> <img class="media-object" src="images/photos/user5.jpg" alt=""> </a>
                 <div class="media-body">
