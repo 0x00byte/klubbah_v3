@@ -24,7 +24,7 @@
 	$app = new Xo_App(SCRIPTS);
 	$words = $app->words;
 
-	if (isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in'] === true) {
+	if (isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in'] === true || isset($_SESSION['remember_me']) && $_SESSION['remember_me'] === true) {
 		require_once INCLUDES . 'header.php';
 		if (isset($_GET['page'])) {
 			$app->uiTemplateManager($_GET['page'], $app);
@@ -33,8 +33,8 @@
 		}
 		require_once INCLUDES . 'footer.php';
 	} else {
-		if (isset($_POST['email']) && isset($_POST['pass'])) {
-			$app->accessValidateLogin($_POST['email'], $_POST['pass']);
+		if (isset($_POST['email_username']) && isset($_POST['pass'])) {
+			$app->accessValidateLogin($_POST['email_username'], $_POST['pass'], $_POST['remember_me']);
 		} else {
 			$app->uiTemplateManager('login', $app);
 		}

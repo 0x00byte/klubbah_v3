@@ -20,11 +20,20 @@
   <div class="login_page">
   <div class="login_content">
   <div class="panel-heading border login_heading">sign in now</div>
+
+  <?php if (isset($_SESSION['error_msg'])) {
+
+	 echo '<div class="alert alert-danger">';
+	  echo '<strong>' . $_SESSION['error_msg'] . '</strong>';
+	  echo '</div>';
+
+	  } ?>
+
  <form role="form" class="form-horizontal" method="post" action="index.php">
       <div class="form-group">
 
         <div class="col-sm-10">
-          <input type="email" placeholder="Email" id="inputEmail3" class="form-control" name="email">
+          <input type="text" placeholder="Email/Username" id="inputEmail3" class="form-control" name="email_username">
         </div>
       </div>
       <div class="form-group">
@@ -37,7 +46,7 @@
         <div class=" col-sm-10">
           <div class="checkbox checkbox_margin">
             <label class="lable_margin">
-              <input type="checkbox"><p class="pull-left"> Remember me</p></label>
+              <input type="checkbox" name="remember_me"><p class="pull-left"> Remember me</p></label>
               <a href="index.html">
               <button class="btn btn-default pull-right" type="submit">Sign in</button>
               </a></div>

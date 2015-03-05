@@ -24,9 +24,10 @@
 
 		public $email;
 		public $pass;
+		private $url = BASE_URL . 'index.php';
 
 		// $_POST['email'] & $_POST['pass']
-		public function accessValidateLogin($email, $pass) {
+		public function accessValidateLogin($email, $pass, $remember_me) {
 
 			//$this->email = $this->rootValidate($email, 'email', 'your email address');
 			//$this->pass = $this->rootValidate($pass, 'pass', 'your password');
@@ -34,11 +35,9 @@
 			$this->email = $email;
 			$this->pass = sha1($pass);
 
-			if ($this->email && $this->pass) {
+			if ($this->email && $this->pass != null) {
 
-				//$q = "SELECT user_id, first_name, last_name, user_level, is_rep, is_vip, rep_points, username FROM users WHERE (email='$this->email' AND pass=SHA1('$this->pass')) AND active IS NULL";
-
-				$q = "SELECT users.user_id, users.first_name, users.last_name, users.pass, users.user_level, users.is_rep, users.is_vip, users.rep_points, users.username, profiles.about, profiles.bio, profiles.location, profiles.post_count, profiles.following_count, profiles.follower_count, profiles.telephone, profiles.website, profiles.skills FROM profiles INNER JOIN users ON profiles.fk_user_id=users.user_id WHERE users.email='$this->email' AND users.pass='$this->pass'";
+				$q = "SELECT users.user_id, users.first_name, users.last_name, users.pass, users.user_level, users.is_rep, users.is_vip, users.rep_points, users.username, profiles.about, profiles.bio, profiles.location, profiles.post_count, profiles.following_count, profiles.follower_count, profiles.telephone, profiles.website, profiles.skills FROM profiles INNER JOIN users ON profiles.fk_user_id=users.user_id WHERE users.email='$this->email' OR users.username='$this->email' AND users.pass='$this->pass'";
 
 				$r = mysqli_query ($this->dbc, $q);
 
@@ -48,21 +47,31 @@
 					$_SESSION = mysqli_fetch_array ($r, MYSQLI_ASSOC);
 					$_SESSION['is_logged_in'] = true;
 					$_SESSION['email'] = $this->email;
+					$_SESSION['error_msg'] = null;
+					if (isset($remember_me)) {
+						$_SESSION['remember_me'] = true;
+					}
 					mysqli_free_result($r);
 					mysqli_close($this->dbc);
 					ob_end_clean();
-					$url = BASE_URL . 'index.php';
-					header("Location: $url");
+					header("Location: $this->url");
 					exit();
 
 				} else {
 					// NO DB RECORD FOUND
-					echo '<p class="error">Please check the information you entered.</p>';
+					ob_end_clean();
+					$_SESSION['error_msg'] = "Please check the information you entered.";
+					header("Location: $this->url");
+					exit();
 				}
 
 			} else {
 				// SOMETHING WENT WRONG
-				echo '<p class="error">Please try again.</p>';
+				ob_end_clean();
+				$_SESSION['error_msg'] = null;
+				$_SESSION['error_msg'] = "Please enter your username and password";
+				header("Location: $this->url");
+				exit();
 			}
 		}
 
