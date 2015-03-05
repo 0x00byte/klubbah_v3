@@ -19,7 +19,7 @@
  */
 
 	// CREATES NEW USER INSTANCE
-	class Xo_Rep extends Xo_Event {
+	class Xo_Rep {
 		private function rep_points() {}
 		public function rep_update_points() {}
 	}

@@ -22,6 +22,7 @@
 	class Xo_App extends Xo_Message {
 
 		public $words;
+		public $guestlist;
 
 		// Run all necessary start-up functions, set vars and init classes
 		function __construct($scripts) {

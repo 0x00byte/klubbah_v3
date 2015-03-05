@@ -58,7 +58,9 @@
                                   <?php $this->eventPostToFacebook($event['event_name']); ?>
 				                      </div>
 				                      <br>
+									  <a href="index.php?page=guestlist&eid=<?php echo $event['event_id']; ?>">
 				                      <button class="btn btn-info pull-right btn-sm">GUESTLIST</button>
+									  </a>
 				                       <button class="btn btn-info pull-left btn-sm">BUY TICKETS</button>
 				                    </div>
                               </div>

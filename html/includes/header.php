@@ -137,6 +137,7 @@
             <ul>
               <li> <a href="<?php echo BASE_URL . '?page=event' ?>" class="left_nav_sub_active"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Browse Events</b> </a> </li>
               <li> <a href="<?php echo BASE_URL . '?page=event' ?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>My Events</b> </a> </li>
+              <li> <a href="<?php echo BASE_URL . '?page=guestlist' ?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>My Guestlists</b> </a> </li>
               <li> <a href="<?php echo BASE_URL . '?page=event' ?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Past Events</b> </a> </li>
                <?php
 
@@ -149,12 +150,7 @@
             ?>
             </ul>
           </li>
-          <li><a href="javascript:void(0);"><i class="fa fa-star"></i> GUESTLIST <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
-            <ul>
-              <li> <a href="<?php echo BASE_URL . '?page=guestlist' ?>" class="left_nav_sub_active"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Sign Up</b> </a> </li>
-              <li> <a href="<?php echo BASE_URL . '?page=event' ?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>My Guestlists</b> </a> </li>
-            </ul>
-          </li>
+
           <li><a href="javascript:void(0);"><i class="fa fa-tags"></i> OFFERS <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul>
               <li> <a href="<?php echo BASE_URL . '?page=offer' ?>" class="left_nav_sub_active"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Browse</b> </a> </li>
@@ -173,6 +169,12 @@
             <ul>
               <li> <a href="<?php echo BASE_URL . '?page=rep' ?>" class="left_nav_sub_active"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Dashboard</b> </a> </li>
               <li> <a href="<?php echo BASE_URL . '?page=event' ?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Sign Up</b> </a> </li>
+            </ul>
+          </li>
+           <li><a href="javascript:void(0);"><i class="fa fa-user"></i> CHECK INS <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
+            <ul>
+              <li> <a href="<?php echo BASE_URL . '?page=rep' ?>" class="left_nav_sub_active"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Check in Map</b> </a> </li>
+              <li> <a href="<?php echo BASE_URL . '?page=event' ?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>User Status Ranking</b> </a> </li>
             </ul>
           </li>
         </ul>
