@@ -65,11 +65,11 @@
                   <li> <span class="new"> <a href="task.html" class="pull_left">Create New</a> <a href="task.html" class="pull-right">View All</a> </span> </li>
                 </ul>
               </li>
-              <li class="dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"> Mail <span class="badge badge color_1"><?php echo $app->messageCount(); ?></span> </a>
+              <li class="dropdown"> <a href="javascript:void(0);" data-toggle="dropdown"> Mail <span class="badge badge color_1"><?php echo $_SESSION['msg_count']; ?></span> </a>
                 <ul class="drop_down_task dropdown-menu">
                   <div class="top_pointer"></div>
                   <li>
-                    <p class="number">You have <?php echo $app->messageCount(); ?> mails</p>
+                    <p class="number">You have <?php echo $_SESSION['msg_count']; ?> mails</p>
                   </li>
 
                       <?php $app->messageInbox(); ?>

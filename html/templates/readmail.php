@@ -13,9 +13,9 @@
 
 
          <div class="row">
-        <div class="col-sm-3 col-lg-2"> <a class="btn btn-danger btn-block btn-compose-email" href="compose.html">Compose Email</a>
+        <div class="col-sm-3 col-lg-2"> <a class="btn btn-danger btn-block btn-compose-email" href="index.php?page=compose">Compose Email</a>
           <ul class="nav nav-pills nav-stacked nav-email">
-            <li class="active"> <a href="index.php?page=inbox"> <span class="badge pull-right">2</span> <i class="glyphicon glyphicon-inbox"></i> Inbox </a> </li>
+            <li class="active"> <a href="index.php?page=inbox"> <span class="badge pull-right"><?php echo $_SESSION['msg_count']; ?></span> <i class="glyphicon glyphicon-inbox"></i> Inbox </a> </li>
             <li><a href="#"><i class="glyphicon glyphicon-star"></i> Starred</a></li>
             <li><a href="#"><i class="glyphicon glyphicon-send"></i> Sent Mail</a></li>
             <li> <a href="#"> <span class="badge pull-right">3</span> <i class="glyphicon glyphicon-pencil"></i> Draft </a> </li>

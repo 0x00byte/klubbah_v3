@@ -21,7 +21,7 @@
 	// CREATES NEW APP INSTANCE
 	class Xo_Message extends Xo_Event {
 
-		private $messages = array();
+		public $messages = array();
 		private $sender_name;
 		private $current_message;
 
@@ -31,7 +31,7 @@
 
 		public function messageCount() {
 			$this->messagesGet();
-			return count($this->messages);
+			$_SESSION['msg_count'] = count($this->messages);
 		}
 
 		public function messageInbox() {

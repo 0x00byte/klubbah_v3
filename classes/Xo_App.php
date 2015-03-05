@@ -23,6 +23,7 @@
 
 		public $words;
 
+		// Run all necessary start-up functions, set vars and init classes
 		function __construct($scripts) {
 			$this->initCrud();
 			$this->db = new Xo_Crud();
@@ -30,6 +31,7 @@
 			$this->data_connection();
 			$this->words = $this->language_get_words();
 			parent::language_get_words();
+			$this->messageCount();
 		}
 
 	}
