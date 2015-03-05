@@ -19,7 +19,7 @@
  */
 
 	// CREATES NEW APP INSTANCE
-	class Xo_App extends Xo_Event {
+	class Xo_App extends Xo_Message {
 
 		public $words;
 

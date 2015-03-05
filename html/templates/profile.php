@@ -16,7 +16,7 @@
                     <div class="col-md-8">
                       <div class="user-identity">
                         <h4><strong><?php echo $app->userDisplayName(); ?></strong></h4>
-                        <p><a href="#">@<?php echo $app->userUsername(); ?></a></p>
+                        <p><a href="index.php?page=profile&uid=<?php echo $_SESSION['user_id']; ?>">@<?php echo $app->userUsername(); ?></a></p>
                         <p><i class="fa fa-map-marker"></i> <?php echo $app->userLocation(); ?></p>
                       </div>
                     </div>
