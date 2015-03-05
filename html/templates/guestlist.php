@@ -5,7 +5,7 @@ YOU'RE NOT SIGNED UP TO ANY GUESTLISTS<br>
 	if (isset($_GET['eid'])) {
 		echo "Event ID: " . $_GET['eid'];
 		$guestlist = new Xo_Guestlist();
-		$guestlist->guestlistList();
+		$guestlist->guestlistList($app);
 	}
 
 ?>

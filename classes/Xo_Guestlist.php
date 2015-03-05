@@ -21,15 +21,22 @@
 	// CREATES NEW USER INSTANCE
 	class Xo_Guestlist extends Xo_Rep {
 
+		private $guestlists;
+		private $app;
+
 		public function guestlist_signup($event, $fullname, $guests, $guestemail) {}
 
-		public function guestlistList() {
-
-			echo "WORKS";
+		public function guestlistList($app) {
+			$this->app = $app;
+			$this->guestlists = $this->app->getData("SELECT * FROM guestlists WHERE fk_user_id='2'");
+			foreach ($this->guestlists as $guestlist) {
+				echo "<br>Signed up to: " . $guestlist['fk_event_id'];
+			}
+			$this->guestlistCode();
 		}
 
-		public function guestlist_form() {
-			echo '<br>' . parent::root_generate_code(20);
+		public function guestlistCode() {
+			echo '<br>' . $this->app->root_generate_code(20);
 		}
 
 	}
