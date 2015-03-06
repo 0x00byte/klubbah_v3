@@ -21,17 +21,22 @@
 	// CREATES NEW APP INSTANCE
 	class Xo_App extends Xo_Message {
 
-		public $words;
-		public $guestlist;
-
 		// Run all necessary start-up functions, set vars and init classes
 		function __construct($scripts) {
-			$this->initCrud();
+
+			// INIT MYSQL CLASS
 			$this->db = new Xo_Crud();
+
+			// DEFINE AND INCLUDE APP JS
 			$this->scripts = $scripts;
-			$this->data_connection();
-			$this->words = $this->language_get_words();
-			parent::language_get_words();
+
+			// GET DB CONNECTION
+			$this->dataConnection();
+
+			// SET APP LANGUAGE
+			$this->languageGetWords();
+
+			// COUNT USER MESSAGES AND LOAD THEM
 			$this->messageCount();
 		}
 

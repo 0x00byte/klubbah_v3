@@ -24,6 +24,22 @@
 			$new_string = strip_tags($string);
 			return $new_string;
 		}
+
+		public function securityTrim($var) {
+			return trim($var);
+		}
+
+		public function securityFilterInt() {
+
+		}
+
+		public function securityFilterEmail($email) {
+			return filter_var($email, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
+		}
+
+		public function securityFilterString($string) {
+			return filter_var($string, FILTER_SANITIZE_SPECIAL_CHARS, FILTER_FLAG_STRIP_LOW);
+		}
 	}
 
 ?>

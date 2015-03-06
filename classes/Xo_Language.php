@@ -24,7 +24,7 @@
 		public $words;
 		public $languages = array();
 
-		public function language_get_words() {
+		public function languageGetWords() {
 
 			// For testing purposes:
 			$_SESSION['user_tz'] = 'America/New_York';
@@ -35,7 +35,6 @@
 				// Default.
 				$_SESSION['lid'] = 21;
 			}
-
 
 			$q = "SELECT * FROM words WHERE lang_id = {$_SESSION['lid']}";
 			$r = mysqli_query($this->dbc, $q);
@@ -49,11 +48,10 @@
 
 			$words = mysqli_fetch_array($r, MYSQLI_ASSOC);
 			mysqli_free_result($r);
-			$this->words = $words;
-			$_SESSION['words'] = $this->words;
+			$_SESSION['words'] = $words;
 		}
 
-		public function language_select() {
+		public function languageSelect() {
 
 			$this->languages = $this->getData("SELECT lang_id, lang FROM languages ORDER BY lang_eng ASC");
 

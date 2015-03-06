@@ -27,15 +27,26 @@
 		private $date2;
 		private $url = BASE_URL . 'index.php';
 
-		// $_POST['email'] & $_POST['pass']
-		public function accessValidateLogin($email, $pass, $remember_me) {
+		private function accessRedirect() {
+			header("Location: $this->url");
+			exit();
+		}
 
-			//$this->email = $this->rootValidate($email, 'email', 'your email address');
-			//$this->pass = $this->rootValidate($pass, 'pass', 'your password');
+		private function accessIncrementFailedLogin() {
+			$_SESSION['failed_login']++;
+		}
 
-			$this->email = $email;
-			$this->pass = sha1($pass);
+		private function accessResetFailedLogin() {
+			if ($_SESSION['failed_login_wait_time'] <= 1) {
+			 	$_SESSION['failed_login'] = 0;
+		 	}
+		}
 
+		private function accessSetError($error) {
+			$_SESSION['error_msg'] = $error;
+		}
+
+		private function accessLogin() {
 			if ($this->email && $this->pass != null && $_SESSION['failed_login'] <= 10) {
 
 				$q = "SELECT users.user_id, users.first_name, users.last_name, users.pass, users.user_level, users.is_rep, users.is_vip, users.rep_points, users.username, profiles.about, profiles.bio, profiles.location, profiles.post_count, profiles.following_count, profiles.follower_count, profiles.telephone, profiles.website, profiles.skills FROM profiles INNER JOIN users ON profiles.fk_user_id=users.user_id WHERE users.email='$this->email' OR users.username='$this->email' AND users.pass='$this->pass'";
@@ -55,8 +66,7 @@
 					mysqli_free_result($r);
 					mysqli_close($this->dbc);
 					ob_end_clean();
-					header("Location: $this->url");
-					exit();
+					$this->accessRedirect();
 
 				} else {
 					// NO DB RECORD FOUND
@@ -70,42 +80,50 @@
 		 				$diff = $date1 - $this->date2;
 		 				$difference = $diff / 60;
 		 				$_SESSION['failed_login_wait_time'] = 11 - abs(intval($difference));
-
-		 				if ($_SESSION['failed_login_wait_time'] >= 11) {
-			 				$_SESSION['failed_login'] = 0;
-		 				}
-
+		 				$this->accessResetFailedLogin();
 					}
 
-					$_SESSION['failed_login']++;
+					$this->accessIncrementFailedLogin();
+
 					if ($_SESSION['failed_login'] <= 10) {
-						$_SESSION['error_msg'] = "Please check the information you entered.";
+						$this->accessSetError("Please check the information you entered.");
 					} else {
-						$_SESSION['error_msg'] = "Too many failed attempts, please wait " . $_SESSION['failed_login_wait_time'] . " minutes.";
+						$this->accessSetError("Too many failed attempts, please wait " . $_SESSION['failed_login_wait_time'] . " minutes.");
 					}
-					header("Location: $this->url");
-					exit();
+					$this->accessRedirect();
 				}
 
 			} else {
 				// SOMETHING WENT WRONG // COUNTDOWN FUNCTION NEEDS WORK!!!!!!!
 				ob_end_clean();
 				if ($_SESSION['failed_login'] <= 10) {
-					$_SESSION['error_msg'] = "Please enter your username and password";
+					$this->accessSetError("Please enter your username and password");
 				} else {
 		 			$diff = strtotime($_SESSION['failed_login_time']) - $this->date2;
 		 			$difference = $diff / 60;
 		 			$_SESSION['failed_login_wait_time'] = abs(intval($difference));
-
-		 			if ($_SESSION['failed_login_wait_time'] <= 1) {
-			 			$_SESSION['failed_login'] = 0;
-		 			}
-
-					$_SESSION['error_msg'] = "hahaha Too many failed attempts, please wait " . $_SESSION['failed_login_wait_time'] . " minutes.";
+		 			$this->accessResetFailedLogin();
+		 			$this->accessSetError("Too many failed attempts, please wait " . $_SESSION['failed_login_wait_time'] . " minutes.");
 				}
-				header("Location: $this->url");
-				exit();
+				$this->accessRedirect();
 			}
+		}
+
+		public function accessValidateLogin($email, $pass, $remember_me) {
+
+			// TRIM WHITESPACE
+			$this->securityTrim($email);
+			$this->securityTrim($pass);
+
+			// SET VARS
+			$this->email = $this->securityFilterEmail($email);
+
+			// WILL sha1() DO FOR FILTERING THE USER INPUT FOR PASSWORD?
+			$this->pass = sha1($pass);
+
+			// ATTEMPT LOGIN
+			$this->accessLogin();
+
 		}
 
 		public function accessIsAdmin() {

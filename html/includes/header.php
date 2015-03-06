@@ -113,7 +113,7 @@
         </div>
         <a href="javascript:;" class="toggle-menu menu-right push-body jPushMenuBtn rightbar-switch"><i class="fa fa-comment chat"></i></a>
       </div>
-      <?php $app->language_select(); ?>
+      <?php $app->languageSelect(); ?>
     </div>
     <!--\\\\\\\ header top bar end \\\\\\-->
   </div>

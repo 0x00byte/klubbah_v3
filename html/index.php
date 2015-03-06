@@ -18,23 +18,37 @@
  * from Evereti Ltd.
  */
 
+ 	// INCLUDE FILE WITH ALL BASIC/HELPER FUNCTIONS AND CONSTANTS
+ 	// IT ALSO STARTS THE SESSION AND OUTPUT BUFFERING
 	require_once( '../config.inc.php' );
-	require_once( CLASSES . 'Xo_Root.php' );
 
+	// CREATE NEW INSTANCE OF APP CLASS (ROOT CLASS WITH STANDARD FUNCTIONS - UPLOAD, SECURITY, VALIDATION, ACCESS CONTROL ETC)
+	// PASS IN THE REQUIRED JAVASCRIPTS TO APP CLASS VIA SCRIPTS ARRAY CONSTANT
 	$app = new Xo_App(SCRIPTS);
-	$words = $app->words;
 
+	// IF THE USER IS LOGGED IN OR REMEMBER ME IS SET THEN GO AHEAD AND LOAD THE MAIN SITE
 	if (isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in'] === true || isset($_SESSION['remember_me']) && $_SESSION['remember_me'] === true) {
+
+		// INCLUDE SITE HEADER
 		require_once INCLUDES . 'header.php';
+
+		// IF THE PAGE IS SET, LOAD PAGE TEMPLATE
 		if (isset($_GET['page'])) {
 			$app->uiTemplateManager($_GET['page'], $app);
+		// IF NO PAGE SET, LOAD INDEX AS DEFAULT
 		} else {
 			$app->uiTemplateManager('index', $app);
 		}
+
+		// INCLUDE SITE FOOTER
 		require_once INCLUDES . 'footer.php';
+
+	// IF THE USER IS NOT LOGGED IN, LOAD LOGIN PAGE
 	} else {
+		// IF LOGIN FORM HAS BEEN SUBMITTED AND VALUES ARE SET, THEN ATTEMPT TO VALIDATE USER
 		if (isset($_POST['email_username']) && isset($_POST['pass'])) {
 			$app->accessValidateLogin($_POST['email_username'], $_POST['pass'], $_POST['remember_me']);
+		// IF NO POST VALUES SET, THEN SHOW LOGIN PAGE
 		} else {
 			$app->uiTemplateManager('login', $app);
 		}

@@ -48,7 +48,7 @@
 			return $res;
 		}
 
-		public function data_connection() {
+		public function dataConnection() {
 			$this->get_dbc();
 		}
 
