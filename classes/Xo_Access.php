@@ -24,6 +24,7 @@
 
 		public $email;
 		public $pass;
+		private $date2;
 		private $url = BASE_URL . 'index.php';
 
 		// $_POST['email'] & $_POST['pass']
@@ -60,23 +61,47 @@
 				} else {
 					// NO DB RECORD FOUND
 					ob_end_clean();
+
+					if (!isset($_SESSION['failed_login_time'])) {
+						$_SESSION['failed_login_time'] = date('H:i:s');
+					} else {
+						$date1 = strtotime($_SESSION['failed_login_time']);
+		 				$this->date2 = strtotime(date('H:i:s'));
+		 				$diff = $date1 - $this->date2;
+		 				$difference = $diff / 60;
+		 				$_SESSION['failed_login_wait_time'] = 11 - abs(intval($difference));
+
+		 				if ($_SESSION['failed_login_wait_time'] >= 11) {
+			 				$_SESSION['failed_login'] = 0;
+		 				}
+
+					}
+
 					$_SESSION['failed_login']++;
 					if ($_SESSION['failed_login'] <= 10) {
 						$_SESSION['error_msg'] = "Please check the information you entered.";
 					} else {
-						$_SESSION['error_msg'] = "Too many failed attempts, please wait 10 minutes.";
+						$_SESSION['error_msg'] = "Too many failed attempts, please wait " . $_SESSION['failed_login_wait_time'] . " minutes.";
 					}
 					header("Location: $this->url");
 					exit();
 				}
 
 			} else {
-				// SOMETHING WENT WRONG
+				// SOMETHING WENT WRONG // COUNTDOWN FUNCTION NEEDS WORK!!!!!!!
 				ob_end_clean();
 				if ($_SESSION['failed_login'] <= 10) {
 					$_SESSION['error_msg'] = "Please enter your username and password";
 				} else {
-					$_SESSION['error_msg'] = "Too many failed attempts, please wait 10 minutes.";
+		 			$diff = strtotime($_SESSION['failed_login_time']) - $this->date2;
+		 			$difference = $diff / 60;
+		 			$_SESSION['failed_login_wait_time'] = abs(intval($difference));
+
+		 			if ($_SESSION['failed_login_wait_time'] <= 1) {
+			 			$_SESSION['failed_login'] = 0;
+		 			}
+
+					$_SESSION['error_msg'] = "hahaha Too many failed attempts, please wait " . $_SESSION['failed_login_wait_time'] . " minutes.";
 				}
 				header("Location: $this->url");
 				exit();

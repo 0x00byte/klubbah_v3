@@ -32,6 +32,7 @@
   ?>
 
  <form role="form" class="form-horizontal" method="post" action="index.php" <?php if ($_SESSION['failed_login'] >= 11) { echo 'style="display: none;"'; } ?>>
+
       <div class="form-group">
 
         <div class="col-sm-10">
