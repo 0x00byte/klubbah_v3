@@ -18,6 +18,10 @@
  * from Evereti Ltd.
  */
 
+
+ // This class is the main class that is called to launch main application
+ // Inherits from Xo_Root , Xo_Security, Xo_Init, Xo_Data, Xo_Logger, Xo_Language, Xo_Upload, Xo_Ui, Xo_Access, Xo_Status, Xo_Profile, Xo_User, Xo_Gallery, Xo_Event, Xo_Message
+
 	// CREATES NEW APP INSTANCE
 	class Xo_App extends Xo_Message {
 

@@ -22,15 +22,29 @@
 	class Xo_Guestlist extends Xo_Rep {
 
 		private $guestlists;
+		private $event;
 		private $app;
+
+		function __construct($app) {
+			$this->app = $app;
+			$this->guestlistGetSignups();
+		}
+
+		private function guestlistGetSignups() {
+			$this->guestlists = $this->app->getData("SELECT * FROM guestlists WHERE fk_user_id='2'");
+		}
+
+		public function guestlistCount() {
+			return count($this->guestlists);
+		}
 
 		public function guestlist_signup($event, $fullname, $guests, $guestemail) {}
 
-		public function guestlistList($app) {
-			$this->app = $app;
-			$this->guestlists = $this->app->getData("SELECT * FROM guestlists WHERE fk_user_id='2'");
+		public function guestlistList() {
 			foreach ($this->guestlists as $guestlist) {
-				echo "<br>Signed up to: " . $guestlist['fk_event_id'];
+				$event_id = $guestlist['fk_event_id'];
+				$this->event = $this->app->getData("SELECT * FROM events WHERE event_id='$event_id' LIMIT 1");
+				echo "<h2>" . $this->event[0]['event_name'] . "</h2>";
 			}
 			$this->guestlistCode();
 		}

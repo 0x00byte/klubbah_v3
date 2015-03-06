@@ -27,6 +27,7 @@
 		private $date2;
 		private $url = BASE_URL . 'index.php';
 
+		// FUNCTION TO REDIRECT USER TO INDEX PAGE
 		private function accessRedirect() {
 			header("Location: $this->url");
 			exit();
